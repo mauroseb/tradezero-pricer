@@ -1,0 +1,18 @@
+[project]
+name = "tradezero-pricer"
+version = "0.1.1"
+authors = [
+  { name="Mauro Oddi", email="mauro.oddi@gmail.com" },
+]
+description = "TradeZero Pricer Microservice"
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/mauroseb/tradezero-pricer"
+"Bug Tracker" = "https://github.com/mauroseb/tradezero-pricer/issues"
