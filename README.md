@@ -8,7 +8,7 @@ It presents financial data like stock prices through a REST API.
 $ FLASK_APP=$PWD/tradezero_pricer.py flask run
  * Serving Flask app 'tradezero_pricer.py'
  * Debug mode: on
-WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+WARNING: This is a development server...
  * Running on http://127.0.0.1:5000
 Press CTRL+C to quit
  * Restarting with stat
@@ -27,12 +27,12 @@ Press CTRL+C to quit
 ~~~
 $ pytest
  pytest                               
-============================================== test session starts ================================================
+============================================== test session starts =========================================
 platform linux -- Python 3.10.9, pytest-7.3.1, pluggy-1.0.0
 rootdir: /home/maur0x/stuff/fin/tradezero_pricer
 collected 2 items                                                                                     
 
-tradezero_pricer/tests/test_api.py ..                                                                        [100%]
+tradezero_pricer/tests/test_api.py ..                                                                 [100%]
 ...
-========================================== 2 passed, 8 warnings in 0.90s ==========================================
+========================================== 2 passed, 8 warnings in 0.90s ===================================
 ~~~
