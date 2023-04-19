@@ -1,13 +1,35 @@
-# finapp-be
-Finapp Backend
+# TradeZero Pricer Backend Microservice
 
-## Test
+This service is part of the TradeZero application.
+It presents financial data like stock prices through a REST API.
+
+## Run
+```
+$ FLASK_APP=$PWD/tradezero_pricer.py flask run
+ * Serving Flask app 'tradezero_pricer.py'
+ * Debug mode: on
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on http://127.0.0.1:5000
+Press CTRL+C to quit
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 860-991-813
+```
+
+## API Documentation
+
+ - Browse http://localhost:5000/apidocs
+
+## Testing
 ~~~
-$ git clone https://github.com/mauroseb/finapp-be
-$ cd finapp-be
-$ python3 -m venv env
-$ ./env/bin/activate
-$ pip install -U flask
-$ export FLASK_APP=./finapp-be/shim.py
-$ flask run
+$ pytest
+ pytest                               
+============================================== test session starts ================================================
+platform linux -- Python 3.10.9, pytest-7.3.1, pluggy-1.0.0
+rootdir: /home/maur0x/stuff/fin/tradezero_pricer
+collected 2 items                                                                                                                                                                                                                           
+
+tradezero_pricer/tests/test_api.py ..                                                                        [100%]
+...
+========================================== 2 passed, 8 warnings in 0.90s ==========================================
 ~~~
