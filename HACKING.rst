@@ -3,7 +3,7 @@ TradeZero Frontend Guidelines
 
 This application follows a set of style guidelines for clarity.
 Evem though this is a small test project, it is desired to follow
-common accepted standards to help understand and maintain the code..
+common accepted standards to help understand and maintain the code.
 
 General
 -------
