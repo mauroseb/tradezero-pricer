@@ -20,14 +20,17 @@ Press CTRL+C to quit
 
  - Browse http://localhost:5000/apidocs
 
-## Testing
+
+## Unit Testing
+
+ - Use pytest or tox
 ~~~
 $ pytest
  pytest                               
 ============================================== test session starts ================================================
 platform linux -- Python 3.10.9, pytest-7.3.1, pluggy-1.0.0
 rootdir: /home/maur0x/stuff/fin/tradezero_pricer
-collected 2 items                                                                                                                                                                                                                           
+collected 2 items                                                                                     
 
 tradezero_pricer/tests/test_api.py ..                                                                        [100%]
 ...
