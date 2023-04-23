@@ -3,6 +3,7 @@
 from datetime import date
 from flask import current_app, request, url_for
 from flask_mongoengine import MongoEngine
+from tradezero_pricer import db
 
 
 class Stock(db.Document):

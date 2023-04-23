@@ -1,0 +1,20 @@
+---
+tags:
+  - health
+definitions:
+  Health:
+    type: object
+    properties:
+      hostname:
+        type: string
+      code:
+        type: string
+      status:
+        type: float
+      timestamp:
+        type: ISOdate
+responses:
+  200:
+    description: "Health OK."
+  500:
+    description: "Health BAD."

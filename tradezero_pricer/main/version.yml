@@ -1,0 +1,26 @@
+---
+tags:
+  - version
+definitions:
+  Version:
+    type: object
+    properties:
+      result:
+        type: integer
+      version:
+        type: string
+      major:
+        type: integer
+      minor:
+        type: integer
+      release:
+        type: integer
+      commit:
+        type: string
+      api:
+        type: string
+responses:
+  200:
+    description: "Returns version."
+  500:
+    description: "Application error."

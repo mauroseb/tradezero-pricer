@@ -1,0 +1,26 @@
+---
+tags:
+  - intraday
+parameters:
+  - name: ticker
+    in: path
+    description: "Ticker to identify a stock."
+    type: string
+    required: true
+definitions:
+  StockChange:
+    type: object
+    properties:
+      ticker:
+        type: string
+      change:
+        type: float
+      pct:
+        type: float
+responses:
+  200:
+    description: "Returns single stock intraday price variation data (StockChange)."
+  404:
+    description: "Stock not found."
+  500:
+    description: "Application error."

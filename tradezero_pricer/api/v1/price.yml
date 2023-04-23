@@ -1,0 +1,30 @@
+---
+tags:
+  - price
+parameters:
+  - name: ticker
+    in: path
+    description: "Ticker to identify a stock."
+    type: string
+    required: true
+definitions:
+  StockShort:
+    type: object
+    properties:
+      ticker:
+        type: string
+      name:
+        type: string
+      volume:
+        type: float
+      marketcap:
+        type: float
+      price:
+        type: float
+responses:
+  200:
+    description: "Returns single stock summarized data (StockShort)."
+  404:
+    description: "Stock not found."
+  500:
+    description: "Application error."

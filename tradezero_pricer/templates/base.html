@@ -1,0 +1,39 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}TradeZero Pricer {% endblock %}
+
+{% block head %}
+{{ super() }}
+<link rel="shortcut icon" href="{{ url_for( 'static', filename='favicon.ico') }}" type="image/x-icon">
+<link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" type="text/css" href="/static/main.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="Mauro Oddi" />
+<title>TradeZero Pricer</title>
+{% endblock %}
+
+{% block navbar %}
+<nav id="navBar">
+    <div class="nav">
+       <div class="navi">
+          <h1 class="navi">
+          <i class="fa fa-dollar fa-fw" ></i> TradeZero Pricer
+          </h1>
+        </div>
+	   <ul>
+	       <li><a id='ABOUT' class=navi href="/">HOME</a></li>
+	       <li><a id='ABOUT' class=navi href="/docs">API DOCUMENTATION</a></li>
+	       <li><a id='ABOUT' class=navi href="/about">ABOUT</a></li>
+	   </ul>
+	</div>
+</nav>
+{% endblock %}
+
+{% block content %}
+<div class="content">
+	Version 0.1.3
+</div>
+{% endblock %}

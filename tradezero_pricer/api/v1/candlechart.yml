@@ -1,0 +1,32 @@
+---
+tags:
+  - candlechart
+parameters:
+  - name: ticker
+    in: path
+    description: "Ticker to identify a stock."
+    type: string
+    required: true
+definitions:
+  CandleChartData:
+    type: array
+    items:
+      type: object
+      properties:
+        timestamp:
+          type: ISOdate
+        high:
+          type: string
+        low:
+          type: float
+        open:
+          type: float
+        close:
+          type: float
+responses:
+  200:
+    description: "Returns an array of OHLC data for a single stock."
+  404:
+    description: "Stock not found."
+  500:
+    description: "Application error."

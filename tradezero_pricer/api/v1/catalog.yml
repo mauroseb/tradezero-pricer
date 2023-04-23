@@ -1,0 +1,28 @@
+---
+tags:
+  - catalog
+definitions:
+  StockList:
+    type: array
+    items:
+      type: object
+      properties:
+        ticker:
+          type: string
+        name:
+          type: string
+        volume:
+          type: float
+        marketcap:
+          type: float
+        price:
+          type: float
+        price_y:
+          type: float
+        last_update:
+          type: ISOdate
+responses:
+  200:
+    description: "Returns array (StockList) of stock objects with all stored properties except candle chart data."
+  500:
+    description: "Application error."

@@ -27,9 +27,9 @@ class TestTradeZeroApi(unittest.TestCase):
         self.app_context.pop()
 
     def is_valid_json(self, json_string):
-        """
+        '''
         Verify the string is a valid JSON
-        """
+        '''
         try:
             json.loads(json_string)
             return True
@@ -38,18 +38,18 @@ class TestTradeZeroApi(unittest.TestCase):
 
 
     def test_get_price_ticker(self):
-        """
+        '''
         Verify GET /api/v1/price/<ticker> endpoint
-        """
+        '''
         response = self.client.get("/api/v1/price/IBM")
         self.assertEqual(response.status_code, 200)
-        self.assertTrue('{"name": "IBM"' in response.get_data(as_text=True))
+        self.assertTrue('{"ticker": "IBM"' in response.get_data(as_text=True))
 
     def test_get_candlechart_ticker(self):
-        """
+        '''
         Verify GET /api/v1/candlechart/<ticker> endpoint
-        """
-        response = self.client.get("/api/v1/candlechart/<ticker>")
-        #self.assertEqual(response.status_code, 200)
+        '''
+        response = self.client.get("/api/v1/candlechart/IBM")
+        self.assertEqual(response.status_code, 200)
         self.assertTrue(self.is_valid_json(response.get_data(as_text=True)))
 

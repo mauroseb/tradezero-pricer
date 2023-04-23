@@ -1,11 +1,28 @@
 FROM registry.access.redhat.com/ubi8/python-39:latest
 
-ENV User_ID=1001 \
-    TRADEZERO_HOME=/opt/tradezero_pricer \
-    FLASK_APP=${TRADEZERO_HOME}/tradezero_pricer/tradezero_pricer.py \
-    FLASK_ENV=production
+ARG IMAGE_CREATE_DATE
+ARG IMAGE_VERSION
+ARG IMAGE_VERSION_COMMIT
 
-LABEL maintainer="mauro.oddi@gmail.com" name="tradezero_pricer" build-date="13-04-2023" version="0.1.0"
+ENV USER_ID=1001 \
+    TRADEZERO_HOME=/opt/tradezero_pricer \
+    FLASK_APP=${TRADEZERO_HOME}/tradezero_pricer.py \
+    TZP_VERSION=$IMAGE_VERSION \
+    TZP_COMMIT=$IMAGE_VERSION_COMMIT
+
+LABEL maintainer="mauro.oddi@gmail.com" name="tradezero_pricer" build-date=$IMAGE_CREATE_DATE version=$IMAGE_VERSION
+LABEL commit=$IMAGE_VERSION_COMMIT
+
+# OCI Image Spec Labels [ https://github.com/opencontainers/image-spec/blob/master/annotations.md ]
+LABEL org.opencontainers.image.title="Trade Zero - Pricer" \
+      org.opencontainers.image.description="TradeZero Pricer Backend Microservice." \
+      org.opencontainers.image.authors="Mauro S. Oddi" \
+      org.opencontainers.image.created=$IMAGE_CREATE_DATE \
+      org.opencontainers.image.version=$IMAGE_VERSION \
+      org.opencontainers.image.url="https://github.com/mauroseb/tradezero-pricer/Containerfile" \
+      org.opencontainers.image.soruce="https://github.com/mauroseb/tradezero-pricer.git" \
+      org.opencontainers.image.vendor="Up and Running with Red Hat Openshift" \
+      org.opencontainers.image.licenses="MIT"
 
 USER 0
 
