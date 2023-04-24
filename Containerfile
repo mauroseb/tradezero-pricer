@@ -1,17 +1,28 @@
-FROM registry.access.redhat.com/ubi8/python-39:latest
+# Use regular UBI base image
+FROM registry.access.redhat.com/ubi8/ubi:latest
 
+# Arguments passed to the build
 ARG IMAGE_CREATE_DATE
 ARG IMAGE_VERSION
 ARG IMAGE_VERSION_COMMIT
 
+# Environment variables
+
 ENV USER_ID=1001 \
     TRADEZERO_HOME=/opt/tradezero_pricer \
-    FLASK_APP=${TRADEZERO_HOME}/tradezero_pricer.py \
+    APP=tradezero_pricer.py \
+    FLASK_APP=${TRADEZERO_HOME}/${APP} \
     TZP_VERSION=$IMAGE_VERSION \
     TZP_COMMIT=$IMAGE_VERSION_COMMIT
 
+ENV SUMMARY="TradeZero Pricer is a backend microservice for the Tradezero application."
+
+# Labels
 LABEL maintainer="mauro.oddi@gmail.com" name="tradezero_pricer" build-date=$IMAGE_CREATE_DATE version=$IMAGE_VERSION
-LABEL commit=$IMAGE_VERSION_COMMIT
+LABEL summary="$SUMMARY" \
+	  io.k8s.description="$SUMMARY" io.k8s.display-name="tradezero-pricer" \
+	  usage="podman run -d --name tradezero-pricer-1 -e TZP_DB_HOST=192.168.0.1 -e TZP_DB_USERNAME=tradezero -e TZP_DB_PASSWORD=verysecret -p 8080:8080 tradezero-pricer:latest" \
+      commit="$IMAGE_VERSION_COMMIT"
 
 # OCI Image Spec Labels [ https://github.com/opencontainers/image-spec/blob/master/annotations.md ]
 LABEL org.opencontainers.image.title="Trade Zero - Pricer" \
@@ -26,19 +37,29 @@ LABEL org.opencontainers.image.title="Trade Zero - Pricer" \
 
 USER 0
 
-RUN mkdir $TRADEZERO_HOME && \
-    chown $USER_ID:0 $TRADEZERO_HOME
+# Install python 3.9 and pip 3.9
+RUN dnf install --setopt=tsflags=nodocs -y -e 0 python39 python39-pip && \
+    dnf clean all
+
+# Create application homedir
+RUN mkdir $TRADEZERO_HOME
 
 WORKDIR $TRADEZERO_HOME
 
-USER $USER_ID
-#RUN yum install --setopt=tsflags=nodocs -y -e 0 python3 python3-pip && \
-#    yum clean all
-
+# Copy application bits
 ADD . .
 
-RUN pip3 --no-cache-dir install -r requirements.txt
+# Install application requirements
+RUN pip3 --no-cache-dir install --upgrade pip && \
+    pip3 --no-cache-dir install -r requirements.txt
+
+RUN useradd -d $TRADEZERO_HOME -M -r -s /sbin/nologin -c "TrazeZero Pricer" -u ${USER_ID} tzpricer && \
+    chown -R ${USER_ID}:0 $TRADEZERO_HOME
+
+USER 1001
 
 EXPOSE 8080
 
-CMD [ "flask", "run", "--host=0.0.0.0", "--port=8080" ]
+# Run app
+CMD [ "sh", "-c", "./boot.sh" ]
+

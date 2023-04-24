@@ -7,7 +7,7 @@ import pandas as pd
 
 from datetime import date
 from flask import render_template, Blueprint, current_app, jsonify,\
-     Response, abort
+     Response
 from flasgger import swag_from
 from tradezero_pricer.domain.models.stock import Stock
 from . import api_bp
@@ -113,9 +113,9 @@ def price(ticker):
                 "price": stock.price,
             }
             return Response(json.dumps(data), mimetype='application/json')
-        return jsonify({"status": 404, "reason": "Stock not found."})
+        return jsonify({"status": 404, "reason": "Stock not found."}), 404
     except:
-        abort(500)
+        return jsonify({"status": 500, "reason": "Internal Server Error"}), 500
 
 
 @api_bp.route('/candlechart/<ticker>', methods=['GET'])
@@ -132,7 +132,7 @@ def candlechart(ticker):
             return Response(json.dumps({"status": 404, "reason": "Stock not found."}, mimetype='application/json'))
 
     except:
-        abort(500)
+        return jsonify({"status": 500, "reason": "Internal Server Error"}), 500
 
 
 @api_bp.route('/intraday/<ticker>', methods=['GET'])
@@ -149,7 +149,7 @@ def intraday():
             return Response(json.dumps({"status": 404, "reason": "Stock not found."}, mimetype='application/json'))
 
     except:
-        abort(500)
+        return jsonify({"status": 500, "reason": "Internal Server Error"}), 500
 
     stock = load_stock(ticker)
     if stock:

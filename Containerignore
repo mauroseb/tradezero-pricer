@@ -1,5 +1,0 @@
-.git
-.tox
-.pytest_cache
-.circleci
-*.rst

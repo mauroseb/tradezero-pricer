@@ -5,7 +5,6 @@ import os
 from flask import Flask, request, jsonify, Response, abort, render_template
 from flask_bootstrap import Bootstrap
 from flask_cors import CORS
-from flask_mail import Mail
 from flask_mongoengine import MongoEngine
 from flasgger import Swagger
 from datetime import date
@@ -14,7 +13,7 @@ from tradezero_pricer.config import config as tzp_config
 bootstrap = Bootstrap()
 db = MongoEngine()
 
-def create_app(config_name):
+def create_app(config_name='container'):
     '''
     Application Factory
     '''
