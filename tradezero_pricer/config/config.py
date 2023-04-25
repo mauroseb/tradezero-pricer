@@ -8,7 +8,7 @@ class Config(object):
     TZP_DB_NAME = os.environ.get('TZP_DB_NAME') or 'tradezero-pricer'
     TZP_ADMIN = os.environ.get('TZP_ADMIN') or 'tradezero'
     TZP_DB_USERNAME = os.environ.get('TZP_DB_USERNAME') or 'tradezero'
-    TZP_DB_PASSWORD = os.environ.get('TZP_DB_PASSWORD') or 'verysecret'
+    TZP_DB_PASSWORD = os.environ.get('TZP_DB_PASSWORD')
     TZP_DB_HOST = os.environ.get('TZP_DB_HOST') or 'localhost'
     TZP_DB_PORT = os.environ.get('TZP_DB_PORT') or 27017
     TZP_SLOW_DB_QUERY_TIME = 0.5

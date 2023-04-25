@@ -9,10 +9,10 @@ services:
     restart: always
     hostname: tradezero-pricer-1
     environment:
-      WORDPRESS_DB_HOST: mongo
-      WORDPRESS_DB_USER: tradezero
-      WORDPRESS_DB_PASSWORD: verysecret
-      WORDPRESS_DB_NAME: tradezero-pricer
+      TZP_DB_HOST: mongo
+      TZP_DB_USERNAME: tradezero
+      TZP_DB_PASSWORD: verysecret
+      TZP_DB_NAME: tradezero-pricer
     ports:
       - "8080:8080"
   mongo:
@@ -23,4 +23,7 @@ services:
         MONGO_INITDB_DATABASE: tradezero-pricer
         MONGO_INITDB_ROOT_USERNAME: tradezero
         MONGO_INITDB_ROOT_PASSWORD: verysecret
-
+    ports:
+      - "27017:27017"
+    volumes:
+      mongodbvol:/data/db

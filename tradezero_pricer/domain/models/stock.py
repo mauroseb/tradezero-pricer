@@ -32,3 +32,13 @@ class Stock(db.Document):
     def get_id(self):
         return str(self.id)
 
+def stock_factory(ticker: str, name:str, price: float, price_y: float,
+                 volume: float, marketcap: float, candle_data: list, last_update) -> Stock:
+    '''
+    Stock factory method
+    '''
+    _last_update = last_update or date.today()
+    return Stock(ticker=ticker, price=price, price_y=price_y, volume=volume,
+                 marketcap=marketcap, candle_data=candle_data, last_update=_last_update)
+
+
