@@ -11,6 +11,8 @@ class Config(object):
     TZP_DB_PASSWORD = os.environ.get('TZP_DB_PASSWORD')
     TZP_DB_HOST = os.environ.get('TZP_DB_HOST') or 'localhost'
     TZP_DB_PORT = os.environ.get('TZP_DB_PORT') or 27017
+    TZP_VERSION = os.environ.get('TZP_VERSION')
+    TZP_VERSION_COMMIT = os.environ.get('TZP_COMMIT')
     TZP_SLOW_DB_QUERY_TIME = 0.5
     SSL_REDIRECT = False
     SQLALCHEMY_TRACK_MODIFICATIONS = False

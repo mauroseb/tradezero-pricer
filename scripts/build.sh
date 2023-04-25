@@ -1,7 +1,7 @@
 #!/bin/bash
 NAME=tradezero-pricer
-VERSION=0.1.3
-TAG=devel
+VERSION=0.1.4
+TAG=latest
 PODMAN_ARGS="--layers=false"
 
 podman build ${PODMAN_ARGS} --build-arg=IMAGE_VERSION=${VERSION} \

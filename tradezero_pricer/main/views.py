@@ -11,8 +11,9 @@ from . import main_bp
 
 tzp_major = 0
 tzp_minor = 1
-tzp_release = 3
+tzp_release = 4
 tzp_version = f'{tzp_major}.{tzp_minor}.{tzp_release}'
+#tzp_version = app.config['TZP_VERSION']
 tzp_commit = '8389e6144fb74ef0a3652c35a31860fe'
 
 
