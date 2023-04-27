@@ -1,0 +1,19 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    app: tradezero-pricer
+    app.kubernetes.io/component: tradezero-pricer
+    app.kubernetes.io/name: tradezero-pricer
+    app.kubernetes.io/part-of: tradezero
+    app.kubernetes.io/version: "0.1.3"
+  name: tradezero-pricer
+spec:
+  host: tradezero-pricer.apps.ocp4-bm.t1.lab.local
+  port:
+    targetPort: 8080
+  to:
+    kind: Service
+    name: tradezero-pricer-svc
+    weight: 100
+  wildcardPolicy: None

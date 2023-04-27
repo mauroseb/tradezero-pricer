@@ -1,0 +1,14 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: tradezero-pricer
+commonLabels:
+   superapp: tradezero-pricer
+commonAnnotations:
+   cost-center: mauro
+resources:
+- 01-namespace.yaml
+- 02-tradezero-pricer-db-deployment.yaml
+- 03-tradezero-pricer-db-svc.yaml
+- 04-tradezero-pricer-deployment.yaml
+- 05-tradezero-pricer-svc.yaml
+- 06-tradezero-route.yaml
