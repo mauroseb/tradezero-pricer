@@ -1,6 +1,22 @@
 import os
 
 basedir = os.path.abspath(os.path.dirname(__file__))
+usage = '''
+USAGE:
+======
+
+Tradezero Pricer Microservice
+
+ * ENVIRONMENT VARIABLES
+
+   TZP_DB_HOST = MongoDB hostname (default: 'localhost')
+   TZP_DB_PORT = MongoDB port (default: '27017')
+   TZP_DB_NAME = MongoDB database name (default: 'tradezero-pricer')
+   TZP_DB_USERNAME = MongoDB user name (default: 'tradezero')
+   TZP_DB_PASSOWRD = MongoDB user password (mandatory)
+
+'''
+version = '0.1.4'
 
 class Config(object):
     DEBUG = False
@@ -8,22 +24,28 @@ class Config(object):
     TZP_DB_NAME = os.environ.get('TZP_DB_NAME') or 'tradezero-pricer'
     TZP_ADMIN = os.environ.get('TZP_ADMIN') or 'tradezero'
     TZP_DB_USERNAME = os.environ.get('TZP_DB_USERNAME') or 'tradezero'
-    TZP_DB_PASSWORD = os.environ.get('TZP_DB_PASSWORD')
     TZP_DB_HOST = os.environ.get('TZP_DB_HOST') or 'localhost'
-    TZP_DB_PORT = os.environ.get('TZP_DB_PORT') or 27017
-    TZP_VERSION = os.environ.get('TZP_VERSION')
-    TZP_VERSION_COMMIT = os.environ.get('TZP_COMMIT')
+    TZP_DB_PORT = os.environ.get('TZP_DB_PORT') or '27017'
+    TZP_VERSION = os.environ.get('TZP_VERSION') or version
+    TZP_DB_PASSWORD = os.environ.get('TZP_DB_PASSWORD')
+    TZP_VERSION_COMMIT = os.environ.get('TZP_COMMIT') or "N/A"
     TZP_SLOW_DB_QUERY_TIME = 0.5
     SSL_REDIRECT = False
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_RECORD_QUERIES = True
     MONGODB_SETTINGS = {
         'host': TZP_DB_HOST,
-        'port': TZP_DB_PORT,
+        'port': int(TZP_DB_PORT),
         'db': TZP_DB_NAME,
         'username': TZP_DB_USERNAME,
         'password': TZP_DB_PASSWORD
         }
+
+    def __init__(self):
+        if "TZP_DB_PASSWORD" not in os.environ:
+            print('ERROR: TZP_DB_PASSWORD undefined.')
+            print(usage)
+            exit(1)
 
     @staticmethod
     def init_app(app):

@@ -9,12 +9,6 @@ from flask import render_template, Blueprint, current_app, jsonify,\
 from flasgger import swag_from
 from . import main_bp
 
-tzp_major = 0
-tzp_minor = 1
-tzp_release = 4
-tzp_version = f'{tzp_major}.{tzp_minor}.{tzp_release}'
-#tzp_version = app.config['TZP_VERSION']
-tzp_commit = '8389e6144fb74ef0a3652c35a31860fe'
 
 
 def check_backend():
@@ -24,7 +18,9 @@ def check_backend():
 @main_bp.route("/index", methods=['GET', 'POST'])
 @main_bp.route("/", methods=['GET', 'POST'])
 def main():
-    return render_template('base.html')
+    tzp_version = current_app.config['TZP_VERSION']
+    tzp_commit = current_app.config['TZP_VERSION_COMMIT']
+    return render_template('base.html', tzp_version=tzp_version, tzp_commit=tzp_commit)
 
 @main_bp.route("/about", methods=['GET', 'POST'])
 def about():
@@ -62,13 +58,18 @@ def healthcheck():
 @main_bp.route("/version")
 @swag_from("version.yml")
 def version():
-    """Return version"""
+    '''
+    Return version
+    '''
+    tzp_version = current_app.config['TZP_VERSION']
+    tzp_commit = current_app.config['TZP_VERSION_COMMIT']
+    fullversion = tzp_version.split('.')
     data = {
         'result': 200,
         'version': tzp_version,
-        'major': tzp_major,
-        'minor': tzp_minor,
-        'release': tzp_release,
+        'major': fullversion[0],
+        'minor': fullversion[1],
+        'release': fullversion[2],
         'commit': tzp_commit,
         'api': 'v1',
     }
