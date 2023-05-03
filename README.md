@@ -5,13 +5,13 @@
 This service is part of the TradeZero application.
 It presents financial data like stock prices through a REST API.
 
-## Run
+## Test Run
 ```
 $ FLASK_APP=$PWD/tradezero_pricer.py flask run
  * Serving Flask app 'tradezero_pricer.py'
  * Debug mode: on
 WARNING: This is a development server...
- * Running on http://127.0.0.1:5000
+ * Running on http://127.0.0.1:8080
 Press CTRL+C to quit
  * Restarting with stat
  * Debugger is active!
@@ -20,7 +20,7 @@ Press CTRL+C to quit
 
 ## API Documentation
 
- - Browse http://localhost:5000/apidocs
+ - Browse http://localhost:8080/apidocs
 
 
 ## Unit Testing
