@@ -1,3 +1,5 @@
+![GitHub](https://img.shields.io/github/license/mauroseb/tradezero-pricer)
+
 # TradeZero Pricer Backend Microservice
 
 This service is part of the TradeZero application.
