@@ -1,7 +1,7 @@
 version: '3'
 services:
   pricer:
-    image: "quay.io/uar_openshift/tradezero-pricer:0.1.4"
+    image: "quay.io/uar_openshift/tradezero-pricer:0.1.5"
     depends_on:
       - mongo-1
     links:

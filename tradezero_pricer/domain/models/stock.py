@@ -26,19 +26,31 @@ class Stock(db.Document):
                 "price_y": self.price_y,
                 "last_update": self.last_update}
 
+    def get_intraday(self):
+        change = (self.price_y - self.price) / self.price_y if stock_price_y else 0.00,
+        return {"ticker": self.ticker,
+                "variation": change}
+
     def is_active(self):
         return True
 
-    def get_id(self):
-        return str(self.id)
+    def get_ticker(self):
+        return str(self.ticker)
 
-def stock_factory(ticker: str, name:str, price: float, price_y: float,
-                 volume: float, marketcap: float, candle_data: list, last_update) -> Stock:
+
+def stock_factory(ticker: str, name: str, price: float, price_y: float,
+                 volume: float, marketcap: float, candle_data: list,
+                 last_update: date) -> Stock:
     '''
     Stock factory method
     '''
-    _last_update = last_update or date.today()
-    return Stock(ticker=ticker, price=price, price_y=price_y, volume=volume,
-                 marketcap=marketcap, candle_data=candle_data, last_update=_last_update)
+    if ticker in current_app.config['TICKER_WATCHLIST']:
+        current_app.logger.debug(f'{ticker} is in the watchlist. Instantiating.')
+        return Stock(ticker=ticker, name=name, price=price, price_y=price_y,
+                 volume=volume, marketcap=marketcap, candle_data=candle_data,
+                 last_update=_last_update)
+    else:
+       current_app.logger.error(f" {ticker} not in the watchlist. Ignoring.")
+    return None
 
 

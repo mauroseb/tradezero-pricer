@@ -53,3 +53,7 @@ env
 
 # Vim
 .*.swp
+
+# request cache
+yfinance.cache
+

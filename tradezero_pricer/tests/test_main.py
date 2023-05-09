@@ -8,7 +8,7 @@ from flask import Flask
 
 class TestTradeZeroApi(unittest.TestCase):
     """
-    Test tradezero_pricer API
+    Test tradezero_pricer main module
     """
     def setUp(self):
         self.app = tradezero_pricer.create_app("container")
@@ -35,19 +35,27 @@ class TestTradeZeroApi(unittest.TestCase):
             return False
 
 
-    def test_get_price_ticker(self):
+    def test_get_version(self):
         '''
-        Verify GET /api/v1/price/<ticker> endpoint
+        Verify GET /version
         '''
-        response = self.client.get("/api/v1/price/IBM")
-        self.assertEqual(response.status_code, 200)
-        self.assertTrue('"ticker": "IBM",' in response.get_data(as_text=True))
-
-    def test_get_candlechart_ticker(self):
-        '''
-        Verify GET /api/v1/candlechart/<ticker> endpoint
-        '''
-        response = self.client.get("/api/v1/candlechart/IBM")
+        tzp_version = self.app.config['TZP_VERSION']
+        response = self.client.get("/version")
         self.assertEqual(response.status_code, 200)
         self.assertTrue(self.is_valid_json(response.get_data(as_text=True)))
+        self.assertTrue(f'"version": "{tzp_version}"' in response.get_data(as_text=True))
+
+    def test_get_index(self):
+        '''
+        Verify GET /
+        '''
+        response = self.client.get("/")
+        self.assertEqual(response.status_code, 200)
+
+    def test_get_swagger(self):
+        '''
+        Verify GET /apidocs/
+        '''
+        response = self.client.get("/apidocs/")
+        self.assertEqual(response.status_code, 200)
 

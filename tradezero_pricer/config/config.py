@@ -16,11 +16,13 @@ Tradezero Pricer Microservice
    TZP_DB_PASSOWRD = MongoDB user password (mandatory)
 
 '''
-version = '0.1.4'
+version = '0.1.5'
 
 class Config(object):
     DEBUG = False
-    DEFAULT_TICKER_LIST = ['AMZN', 'GOOGL', 'IBM', 'MSFT','NFLX', 'NVDA' 'SPCE', 'TSLA']
+    TICKER_WATCHLIST = ['AMZN', 'GOOG', 'IBM', 'MSFT', 'NFLX', 'NVDA',
+                        'META', 'TSLA', 'AAPL', 'RTX', 'LMT', 'GME',
+                        'ZERO']
     TZP_DB_NAME = os.environ.get('TZP_DB_NAME') or 'tradezero-pricer'
     TZP_ADMIN = os.environ.get('TZP_ADMIN') or 'tradezero'
     TZP_DB_USERNAME = os.environ.get('TZP_DB_USERNAME') or 'tradezero'
@@ -41,15 +43,12 @@ class Config(object):
         'password': TZP_DB_PASSWORD
         }
 
-    def __init__(self):
-        if "TZP_DB_PASSWORD" not in os.environ:
-            print('ERROR: TZP_DB_PASSWORD undefined.')
-            print(usage)
-            exit(1)
-
     @staticmethod
     def init_app(app):
-        pass
+        if "TZP_DB_PASSWORD" not in os.environ:
+            print(usage)
+            app.logger.error('ERROR: TZP_DB_PASSWORD undefined.')
+            exit(1)
 
 
 class ProductionConfig(Config):
@@ -60,7 +59,7 @@ class ProductionConfig(Config):
 
 
 class ContainerConfig(ProductionConfig):
-    #DEBUG = True
+    DEBUG = True
     PROPAGATE_EXCEPTIONS = True
     TESTING = True
     @classmethod

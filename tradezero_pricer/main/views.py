@@ -24,7 +24,9 @@ def main():
 
 @main_bp.route("/about", methods=['GET', 'POST'])
 def about():
-    return render_template('about.html')
+    tzp_version = current_app.config['TZP_VERSION']
+    tzp_commit = current_app.config['TZP_VERSION_COMMIT']
+    return render_template('about.html', tzp_version=tzp_version, tzp_commit=tzp_commit)
 
 @main_bp.route("/docs", methods=['GET', 'POST'])
 def docs():
@@ -44,7 +46,6 @@ def healthcheck():
         'code': status_code,
         'status': status,
         'timestamp': time.time(),
-        #'results': results,
     }
 
     response = Response(json.dumps(data), status=status_code, mimetype='application/json')

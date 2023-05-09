@@ -16,7 +16,7 @@
 
 # Usage:
 #   [VERSION=0.1.4] [REGISTRY="quay.io"] make build
-VERSION?=0.1.4
+VERSION?=0.1.5
 REGISTRY?=quay.io
 REG_NAMESPACE := uar_openshift
 PODMAN_ARGS := "--layers=false"
