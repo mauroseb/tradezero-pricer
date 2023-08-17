@@ -52,7 +52,7 @@ Press CTRL+C to quit
 
 
 ```
- tox -e py310
+$ tox -e py310
 py310: commands[0]> pytest -W ignore::DeprecationWarning
 ==================================== test session starts =================================
 platform linux -- Python 3.10.9, pytest-7.3.1, pluggy-1.0.0
