@@ -26,7 +26,7 @@ podman-compose up
 
  - Prod mode with Gunicorn WSGI server
 ```
-$ ./bbot.sh
+$ ./boot.sh
 ```
  - Dev mode
 ```
