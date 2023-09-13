@@ -24,7 +24,7 @@ podman-compose up
 
 3. Run application
 
- - Prod mode with Guincorn WSGI server
+ - Prod mode with Gunicorn WSGI server
 ```
 $ ./bbot.sh
 ```
