@@ -28,7 +28,7 @@ curl -X GET "http://127.0.0.1:8080/api/v1/price/<ticker>" -H "accept: applicatio
 ```
 curl -X GET "http://127.0.0.1:8080/api/v1/candlechart/<ticker>" -H "accept: application/json"
 ```
-![tradezero-pricer-1](images/tradezero-pricer-1.jpg)
+![tradezero-pricer-1](images/tradezero-pricer-1.png)
 
  * To get the catalog of tracked stocks
 ```
@@ -64,7 +64,7 @@ Press CTRL+C to quit
 
  - Browse http://localhost:8080/apidocs
 
-![tradezero-pricer-2](images/tradezero-pricer-2.jpg)
+![tradezero-pricer-2](images/tradezero-pricer-2.png)
 
 
 ## Unit Testing
