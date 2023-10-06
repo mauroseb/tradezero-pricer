@@ -32,7 +32,7 @@ curl -X GET "http://127.0.0.1:8080/api/v1/price/<ticker>" -H "accept: applicatio
 curl -X GET "http://127.0.0.1:8080/api/v1/candlechart/<ticker>" -H "accept: application/json"
 ```
 
- * To get the catalog of tracked stocks
+ * Get the entire catalog of stocks under tracking.
 ```
 curl -X GET "http://127.0.0.1:8080/api/v1/catalog" -H "accept: application/json"
 ```
