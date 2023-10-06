@@ -15,6 +15,25 @@ It presents financial data like stock prices through a REST API.
 ```
 podman-compose up
 ```
+3. Navigate to http://localhost:8080
+
+### Usaga
+
+ * Query stock price
+```
+curl -X GET "http://127.0.0.1:8080/api/v1/price/<ticker>" -H "accept: application/json"
+```
+
+ * Query stock 10-day candlecahrt data
+```
+curl -X GET "http://127.0.0.1:8080/api/v1/candlechart/<ticker>" -H "accept: application/json"
+```
+![tradezero-pricer-1](images/tradezero-pricer-1.jpg)
+
+ * To get the catalog of tracked stocks
+```
+curl -X GET "http://127.0.0.1:8080/api/v1/catalog" -H "accept: application/json"
+```
 
 ### Test Run for development
 
@@ -44,6 +63,8 @@ Press CTRL+C to quit
 ## API Documentation
 
  - Browse http://localhost:8080/apidocs
+
+![tradezero-pricer-2](images/tradezero-pricer-2.jpg)
 
 
 ## Unit Testing
