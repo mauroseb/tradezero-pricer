@@ -3,9 +3,9 @@ services:
   pricer:
     image: "quay.io/uar_openshift/tradezero-pricer:0.1.5"
     depends_on:
-      - mongo-1
+      - mongo
     links:
-      - mongo-1
+      - mongo
     restart: always
     hostname: tradezero-pricer-1
     environment:
@@ -26,4 +26,6 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      mongodbvol:/data/db
+      - mongodbvol:/data/db
+volumes:
+  mongodbvol:
