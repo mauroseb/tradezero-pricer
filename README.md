@@ -3,7 +3,7 @@
 # TradeZero Pricer Backend Microservice
 
 This service is part of the TradeZero application.
-It presents financial data like stock prices through a REST API.
+The service polls live financial data like stock prices from Yahoo Finance and it exposes it through a REST API.
 
 ## Run
 
@@ -19,23 +19,6 @@ podman-compose up
 
 ![tradezero-pricer-1](images/tradezero-pricer-1.png)
 
-
-### Usaga
-
- * Query stock price
-```
-curl -X GET "http://127.0.0.1:8080/api/v1/price/<ticker>" -H "accept: application/json"
-```
-
- * Query stock 10-day candlecahrt data
-```
-curl -X GET "http://127.0.0.1:8080/api/v1/candlechart/<ticker>" -H "accept: application/json"
-```
-
- * Get the entire catalog of stocks under tracking.
-```
-curl -X GET "http://127.0.0.1:8080/api/v1/catalog" -H "accept: application/json"
-```
 
 ### Test Run for development
 
@@ -60,6 +43,23 @@ Press CTRL+C to quit
  * Restarting with stat
  * Debugger is active!
  * Debugger PIN: 860-991-813
+```
+
+## Usaga
+
+ * Query stock price
+```
+curl -X GET "http://127.0.0.1:8080/api/v1/price/<ticker>" -H "accept: application/json"
+```
+
+ * Query stock 10-day candlecahrt data
+```
+curl -X GET "http://127.0.0.1:8080/api/v1/candlechart/<ticker>" -H "accept: application/json"
+```
+
+ * Get the entire catalog of stocks under tracking.
+```
+curl -X GET "http://127.0.0.1:8080/api/v1/catalog" -H "accept: application/json"
 ```
 
 ## API Documentation
