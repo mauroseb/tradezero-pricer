@@ -23,8 +23,15 @@ podman-compose up
 ### Test Run for development
 
 1. Create venv
+```
+python3 -m venv tzp_env
+source ./tzp_env/bin/activate
+```
 
 2. Install requirements
+```
+pip3 install -r requirements.txt
+```
 
 3. Run application
 
