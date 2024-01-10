@@ -68,6 +68,10 @@ curl -X GET "http://127.0.0.1:8080/api/v1/candlechart/<ticker>" -H "accept: appl
 ```
 curl -X GET "http://127.0.0.1:8080/api/v1/catalog" -H "accept: application/json"
 ```
+ * Query stock intraday variation
+```
+curl -X GET "http://127.0.0.1:8080/api/v1/intraday/<ticker>" -H "accept: application/json"
+```
 
 ## API Documentation
 
